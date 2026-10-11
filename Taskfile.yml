@@ -1,0 +1,34 @@
+version: '3'
+
+dotenv: ['.dockerenv']
+
+tasks:
+  build:
+    desc: PHPとComposerのイメージをビルドする
+    cmds:
+      - docker compose build
+
+  up:
+    desc: Slimアプリをバックグラウンドで起動する
+    cmds:
+      - docker compose up -d
+
+  down:
+    desc: アプリのコンテナを停止する
+    cmds:
+      - docker compose down
+
+  ps:
+    desc: コンテナの状態を表示する
+    cmds:
+      - docker compose ps
+
+  logs:
+    desc: アプリのログを追跡する
+    cmds:
+      - docker compose logs -f app
+
+  config:
+    desc: Docker Composeの設定を展開して表示する
+    cmds:
+      - docker compose config

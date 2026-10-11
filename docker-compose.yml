@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    working_dir: /app/app
+    ports:
+      - "127.0.0.1:${APP_PORT:-8080}:8080"
+    volumes:
+      - .:/app
+      - vendor:/app/app/vendor
+    command:
+      - sh
+      - -c
+      - |
+        composer install --no-interaction --prefer-dist &&
+        exec php -d opcache.record_warnings=1 -S 0.0.0.0:8080 -t public
+
+volumes:
+  vendor:
